@@ -1,11 +1,11 @@
 package publisher
 
 import (
+	"github.com/instrumentisto/go-rtmp-bot/controller"
+	"github.com/instrumentisto/go-rtmp-bot/model"
 	"github.com/zhangpeihao/goflv"
 	"log"
 	"time"
-	"github.com/instrumentisto/go-rtmp-bot/controller"
-	"github.com/instrumentisto/go-rtmp-bot/model"
 )
 
 // Opens and read test flv file.

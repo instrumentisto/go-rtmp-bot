@@ -2,8 +2,8 @@ package prometheus
 
 import (
 	"github.com/Zumata/exporttools"
-	"github.com/prometheus/client_golang/prometheus"
 	"github.com/instrumentisto/go-rtmp-bot/model"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 // Implements Prometheus Exporter interface.

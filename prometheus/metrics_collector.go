@@ -2,9 +2,9 @@ package prometheus
 
 import (
 	"github.com/Zumata/exporttools"
-	"log"
 	"github.com/instrumentisto/go-rtmp-bot/model"
 	"github.com/instrumentisto/go-rtmp-bot/utils"
+	"log"
 )
 
 // Collector of test metrics.

@@ -1,9 +1,9 @@
 package controller
 
 import (
+	"github.com/instrumentisto/go-rtmp-bot/model"
 	rtmp "github.com/zhangpeihao/gortmp"
 	"log"
-	"github.com/instrumentisto/go-rtmp-bot/model"
 )
 
 // RTMP clients event handler.

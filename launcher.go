@@ -1,14 +1,14 @@
 package rtmp_bot
 
 import (
+	"github.com/instrumentisto/go-rtmp-bot/controller"
+	"github.com/instrumentisto/go-rtmp-bot/model"
+	"github.com/instrumentisto/go-rtmp-bot/player"
+	"github.com/instrumentisto/go-rtmp-bot/publisher"
+	"github.com/zhangpeihao/gortmp"
 	"log"
 	"strconv"
-	"github.com/zhangpeihao/gortmp"
 	"time"
-	"github.com/instrumentisto/go-rtmp-bot/controller"
-	"github.com/instrumentisto/go-rtmp-bot/publisher"
-	"github.com/instrumentisto/go-rtmp-bot/player"
-	"github.com/instrumentisto/go-rtmp-bot/model"
 )
 
 // Stress test launcher.
@@ -22,23 +22,25 @@ const (
 // RTMP media server stress test launcher.
 // Starts requested count of publishers and players.
 type Launcher struct {
-	Data         *model.StartRequest // Stress test requested parameters.
-	TestReport   *model.Report
-	clients      map[string]IRTMPClient // Map of RTMP clients.
-	handler      *controller.AppHandler // Application signals handler.
-	stop_chan    chan bool              // Stop channel.
+	Data       *model.StartRequest // Stress test requested parameters.
+	TestReport *model.Report
+	rtmp_path  string
+	clients    map[string]IRTMPClient // Map of RTMP clients.
+	handler    *controller.AppHandler // Application signals handler.
+	stop_chan  chan bool              // Stop channel.
 }
 
 // Constructs new stress test launcher.
 //
 // params: data *model.StartRequest   Stress test requested parameters.
 // return new Launcher instance.
-func NewLauncher(data *model.StartRequest, report *model.Report) *Launcher {
+func NewLauncher(data *model.StartRequest, report *model.Report, rtmp_file_path string) *Launcher {
 	return &Launcher{
-		Data: data,
-		TestReport:report,
-		clients:      make(map[string]IRTMPClient),
-		stop_chan:    make(chan bool),
+		Data:       data,
+		TestReport: report,
+		rtmp_path:  rtmp_file_path,
+		clients:    make(map[string]IRTMPClient),
+		stop_chan:  make(chan bool),
 		handler: &controller.AppHandler{
 			Signal_chan: make(chan *model.Signal),
 		},
@@ -51,7 +53,8 @@ func (l *Launcher) Start() {
 	l.stop_chan = make(chan bool)
 	flv_chan := make(chan *model.FlvFrame)
 	flv_stream, err := publisher.NewFlvFile(
-		"/var/www/free-media-server.com/flvs/big_buck_bunny_720p_2mb.flv",
+		//"/var/www/free-media-server.com/flvs/big_buck_bunny_720p_2mb.flv",
+		l.rtmp_path,
 		l.handler)
 	if err != nil {
 		return
@@ -65,7 +68,7 @@ func (l *Launcher) Start() {
 		go pub.Run()
 		l.clients[pub.GetID()] = pub
 	}
-	log.Printf("START TEST: %d",len(l.clients))
+	log.Printf("START TEST: %d", len(l.clients))
 	go flv_stream.PlayFile()
 	for {
 		select {
@@ -119,8 +122,8 @@ func (l *Launcher) Start() {
 					}
 				}
 			}
-		case <- l.stop_chan:
-		return
+		case <-l.stop_chan:
+			return
 		}
 	}
 }
@@ -129,7 +132,7 @@ func (l *Launcher) Start() {
 //
 // param: stream_key string   RTMP stream key.
 func (l *Launcher) startClients(stream_key string) {
-	log.Printf("start clients: %s",stream_key)
+	log.Printf("start clients: %s", stream_key)
 	for i := 0; i < l.Data.ClientCount; i++ {
 		player := player.NewPlayer(l.Data.ServerURL, stream_key, l.handler)
 		l.clients[player.GetID()] = player

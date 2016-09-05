@@ -4,10 +4,10 @@ import (
 	rtmp "github.com/zhangpeihao/gortmp"
 	"log"
 
-	"time"
 	"github.com/instrumentisto/go-rtmp-bot/controller"
 	"github.com/instrumentisto/go-rtmp-bot/model"
 	"github.com/instrumentisto/go-rtmp-bot/utils"
+	"time"
 )
 
 // RTMP player.

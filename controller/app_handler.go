@@ -1,4 +1,5 @@
 package controller
+
 import "github.com/instrumentisto/go-rtmp-bot/model"
 
 // Signal communication handler.
