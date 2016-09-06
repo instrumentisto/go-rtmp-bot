@@ -34,13 +34,13 @@ var (
 // Starts web interface for run stress tests.
 // Man can open the web interface in browser with url "http://host:8082"
 func main() {
-	report = model.NewReport(*server)
 	flag.Parse()
 	defer os.Exit(1)
 	if(*flvPath == ""){
 		log.Fatal("flv file not specified!")
 		return
 	}
+	report = model.NewReport(*server)
 	prometheus_client := prometheus.NewReportExportClient(
 		*listenAddress, *metricPath, report)
 	go prometheus_client.Run()
