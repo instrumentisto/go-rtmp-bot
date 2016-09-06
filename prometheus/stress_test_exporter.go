@@ -17,7 +17,7 @@ type stressTestExporter struct {
 // param: report *model.Report   Stress test report instance.
 func NewExporter(report *model.Report) *stressTestExporter {
 	return &stressTestExporter{
-		exporter: exporttools.NewBaseExporter("stress_test"),
+		exporter: exporttools.NewBaseExporter(report.MetricPrefix),
 		report:   report,
 	}
 }

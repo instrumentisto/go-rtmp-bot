@@ -35,7 +35,6 @@ func NewReportExportClient(
 
 // Runs prometheus exporter client.
 func (c *ReportExportClient) Run() {
-	log.Printf("Run prometheus client on port: %s", c.listen_address)
 	exporter := NewExporter(c.report)
 	err := exporttools.Export(exporter)
 	if err != nil {

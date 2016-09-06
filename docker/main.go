@@ -28,12 +28,13 @@ var (
 	api_addrs = flag.String("api.addrs",":8083",
 		"Address to listen http requests for API")
 	flvPath = flag.String("flv_file", "","Test flv file path")
+	server=flag.String("server","stress_test","Media server name")
 )
 
 // Starts web interface for run stress tests.
 // Man can open the web interface in browser with url "http://host:8082"
 func main() {
-	report = model.NewReport()
+	report = model.NewReport(*server)
 	flag.Parse()
 	defer os.Exit(1)
 	if(*flvPath == ""){

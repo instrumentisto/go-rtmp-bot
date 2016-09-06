@@ -8,6 +8,7 @@ import (
 // Stress test report.
 type Report struct {
 	TestId                 string // Test ID.
+	MetricPrefix           string // Prefix fo prometheus metrics
 	StartTime              int64  // Test starts time.
 	TotalTime              int64  // Total test time.
 	TotalClients           int    // Total RTMP clients count.
@@ -30,8 +31,9 @@ type Report struct {
 }
 
 // Returns new stress test report instance.
-func NewReport() *Report {
+func NewReport(prefix string) *Report {
 	report := &Report{}
+	report.MetricPrefix = prefix
 	report.ResetReport("", 0, 0)
 	return report
 }

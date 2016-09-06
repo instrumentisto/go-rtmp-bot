@@ -4,7 +4,6 @@ import (
 	"github.com/Zumata/exporttools"
 	"github.com/instrumentisto/go-rtmp-bot/model"
 	"github.com/instrumentisto/go-rtmp-bot/utils"
-	"log"
 )
 
 // Collector of test metrics.
@@ -23,7 +22,6 @@ func newMetricsCollector(report *model.Report) *metricsCollector {
 
 // Returns array of prometheus metrics or error instance.
 func (c *metricsCollector) Collect() ([]*exporttools.Metric, error) {
-	log.Println("Collector COLLECT METRICS: %d", c.report.TotalClients)
 	metrics := []*exporttools.Metric{
 		&exporttools.Metric{
 			Name:        "model_connected",
