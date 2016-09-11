@@ -28,6 +28,9 @@ var (
 	redis_url = flag.String("redis","localhost:6379","redis url")
 	flvPath = flag.String("flv_file", "","Test flv file path")
 	server=flag.String("server","stress_test","Media server name")
+	rtmp_url = flag.String("rtmp_url",
+		"rtmp://rtmp_server:1935/live",
+		"RTMP Server application URL")
 )
 
 // Starts web interface for run stress tests.
@@ -72,7 +75,7 @@ func main() {
 				}
 
 				start_request := new(model.StartRequest)
-				start_request.ServerURL="rtmp://rtmp_server:1935/live"
+				start_request.ServerURL=*rtmp_url
 				start_request.ModelCount = int(model_count)
 				start_request.ClientCount = int(client_count)
 
