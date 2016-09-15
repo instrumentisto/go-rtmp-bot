@@ -97,6 +97,9 @@ func (p *Player) Run() {
 //
 // param: message   rtmp.Message.
 func (p *Player) PlayStream(message *rtmp.Message) {
+	if(p.obConn == nil || p.obConn.Status() != rtmp.INBOUND_CONN_STATUS_CREATE_STREAM_OK){
+		return
+	}
 	switch message.Type {
 	case rtmp.VIDEO_TYPE:
 
