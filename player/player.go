@@ -189,8 +189,8 @@ func (p *Player) onRecover() {
 	if(p.obConn != nil){
 		p.obConn.Close()
 	}
-	if r := recover(); r != nil {
+	/*if r := recover(); r != nil {
 		log.Printf("RECOVER on Player %s", r)
 		p.Stop()
-	}
+	}*/
 }
