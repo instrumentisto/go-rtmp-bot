@@ -1,53 +1,58 @@
 <component name="libraryTable">
   <library name="GOPATH &lt;go-rtmp-bot&gt;">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/media-api" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/main.go" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/golang.org" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/sm_agent.go" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/code.google.com" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/test" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/stress.go" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/system" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/media-api" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/main.go" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
     <excluded>
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/gorilla/schema/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/Zumata/exporttools/.git" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/common/config/testdata" />
-      <root url="file://$PROJECT_DIR$" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/davecheney/profile/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/flexconstructor/go_player/.idea" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/beorn7/perks/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/redis.v4/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/flexconstructor/go_player/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/proto/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/flexconstructor/go-container-monitor/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/client_model/.git" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/shirou/gopsutil/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/sevlyar/go-daemon/.git" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/client_golang/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/gorilla/context/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/davecheney/profile/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/sevlyar/go-daemon/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/gorilla/websocket/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/instrumentisto/go-rtmp-bot/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/flexconstructor/go_player/.idea" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/goamf/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/pkg/profile/.git" />
+      <root url="file://$PROJECT_DIR$" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/gorilla/mux/.git" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/instrumentisto/go-rtmp-bot/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/gortmp/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/_conformance" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/matttproud/golang_protobuf_extensions/testdata" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/redis.v4/testdata" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/matttproud/golang_protobuf_extensions/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/common/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/goflv/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/pkg/profile/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/gorilla/websocket/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/client_model/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/flexconstructor/go-container-monitor/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/Zumata/exporttools/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/bsm/ratelimit.v1/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/DATA-DOG/go-sqlmock/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/yaml.v2/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/log/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/common/expfmt/testdata" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/protoc-gen-go/testdata" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/golang.org/x/crypto/ssh/testdata" />
       <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/procfs/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/goamf/.git" />
-      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/gorilla/context/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/common/expfmt/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/beorn7/perks/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/gortmp/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/flexconstructor/go_player/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/redis.v4/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/protoc-gen-go/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/matttproud/golang_protobuf_extensions/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/log/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/_conformance" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/golang/protobuf/proto/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/DATA-DOG/go-sqlmock/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/matttproud/golang_protobuf_extensions/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/golang.org/x/crypto/ssh/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/redis.v4/testdata" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/yaml.v2/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/gopkg.in/bsm/ratelimit.v1/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/zhangpeihao/goflv/.git" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/instrumentisto/go-rtmp-bot/.idea" />
+      <root url="file://$PROJECT_DIR$/../../GOChat/dev/Media-API/src/github.com/prometheus/common/.git" />
     </excluded>
   </library>
 </component>

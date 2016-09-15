@@ -131,10 +131,7 @@ func (p *Player) AddFrame(frame *model.FlvFrame) {
 
 // Stops player.
 func (p *Player) Stop() {
-	if p.status != rtmp.INBOUND_CONN_STATUS_CLOSE {
 		p.stop_chanel <- true
-	}
-
 }
 
 // Sets RTMP connection status.
