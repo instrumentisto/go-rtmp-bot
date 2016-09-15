@@ -67,7 +67,7 @@ func (p *Player) Run() {
 		log.Printf("Player DIAL error: %s", err.Error())
 		return
 	}
-	defer p.obConn.Close()
+
 	err = p.obConn.Connect()
 
 	if err != nil {
@@ -183,6 +183,9 @@ func (p *Player) UpdateStat() {
 
 // Check any panic.
 func (p *Player) onRecover() {
+	if(p.obConn != nil){
+		p.obConn.Close()
+	}
 	if r := recover(); r != nil {
 		log.Printf("RECOVER on Player %s", r)
 		p.Stop()
