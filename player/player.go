@@ -77,7 +77,10 @@ func (p *Player) Run() {
 	}
 	for {
 		select {
-		case stream := <-p.createStreamChan:
+		case stream,ok := <-p.createStreamChan:
+		if(!ok){
+			return
+		}
 			// Play
 			err = stream.Play(p.streamID, nil, nil, nil)
 			if err != nil {
@@ -85,10 +88,8 @@ func (p *Player) Run() {
 				log.Printf("Player PLAY error: %s", err.Error())
 				return
 			}
-		case stop_command := <-p.stop_chanel:
-			if stop_command {
-				return
-			}
+		case  <-p.stop_chanel:
+			return
 		}
 	}
 }
