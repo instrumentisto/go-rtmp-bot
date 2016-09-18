@@ -77,10 +77,10 @@ func (p *Player) Run() {
 	}
 	for {
 		select {
-		case stream,ok := <-p.createStreamChan:
-		if(!ok){
-			return
-		}
+		case stream, ok := <-p.createStreamChan:
+			if !ok {
+				return
+			}
 			// Play
 			err = stream.Play(p.streamID, nil, nil, nil)
 			if err != nil {
@@ -88,7 +88,7 @@ func (p *Player) Run() {
 				log.Printf("Player PLAY error: %s", err.Error())
 				return
 			}
-		case  <-p.stop_chanel:
+		case <-p.stop_chanel:
 			return
 		}
 	}
@@ -98,27 +98,20 @@ func (p *Player) Run() {
 //
 // param: message   rtmp.Message.
 func (p *Player) PlayStream(message *rtmp.Message) {
-	if(p.obConn == nil || p.obConn.Status() != rtmp.INBOUND_CONN_STATUS_CREATE_STREAM_OK){
-		return
-	}
 	switch message.Type {
 	case rtmp.VIDEO_TYPE:
-
 		if p.stat.VideoBytes == 0 {
 			p.stat.VideoStartUpTime = time.Now().Unix() - p.start_command_time
 		}
-
 		if p.startedAt == 0 && p.stat.VideoBytes > 0 {
 			p.startedAt = time.Now().Unix()
 		}
 		p.stat.VideoBytes += int64(message.Buf.Len())
 		p.stat.TotalFrames++
 	case rtmp.AUDIO_TYPE:
-
 		if p.stat.AudioBytes == 0 {
 			p.stat.AudioStartUpTime = time.Now().Unix() - p.start_command_time
 		}
-
 		p.stat.AudioBytes += int64(message.Buf.Len())
 	}
 }
@@ -135,7 +128,8 @@ func (p *Player) AddFrame(frame *model.FlvFrame) {
 
 // Stops player.
 func (p *Player) Stop() {
-		p.stop_chanel <- true
+	p.stop_chanel <- true
+
 }
 
 // Sets RTMP connection status.
@@ -187,11 +181,10 @@ func (p *Player) UpdateStat() {
 
 // Check any panic.
 func (p *Player) onRecover() {
-	if(p.obConn != nil){
+	if p.obConn != nil {
 		p.obConn.Close()
 	}
-	/*if r := recover(); r != nil {
+	if r := recover(); r != nil {
 		log.Printf("RECOVER on Player %s", r)
-		p.Stop()
-	}*/
+	}
 }

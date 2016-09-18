@@ -47,7 +47,6 @@ func (l *RedisListener) Listen() {
 		return
 	}
 	defer pubsub.Unsubscribe(STRESS_TEST_CHANNEL)
-	log.Printf("LISTEN REDIS: %v", l.client.String())
 	for {
 		err := l.ping()
 		if err != nil {

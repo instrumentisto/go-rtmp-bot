@@ -1,9 +1,7 @@
 package model
 
-import (
-	"log"
-	"time"
-)
+import "time"
+
 
 // Stress test report.
 type Report struct {
@@ -44,7 +42,6 @@ func NewReport(prefix string) *Report {
 //         model_count  int       Count of models.
 //         client_count int       Count of clients.
 func (r *Report) ResetReport(test_id string, model_count int, client_count int) {
-	log.Printf("RESET report: model_count %d client count %d", model_count, client_count)
 	r.TestId = test_id
 	r.StartTime = time.Now().Unix()
 	r.TotalTime = time.Unix(0, 0).Unix()
@@ -108,18 +105,19 @@ func (r *Report) UpdateReport(clients map[string]*StatItem) {
 			r.RequestedModelsCount) - r.ConnectedModelsCount
 		r.ConnectedClientCountLag = int64(
 			r.RequestedClientsCount) - r.ConnectedClientsCount
-		if r.ConnectedModelsCount != 0 {
-			r.AverageModelFPS = total_model_fps / int64(
-				r.ConnectedModelsCount)
-			r.AverageAudioBytesSends = audio_bytes_sends / r.ConnectedModelsCount / 1024
-			r.AverageVideoBytesSends = video_bytes_sends / r.ConnectedModelsCount / 1024
-			r.TotalVideoPublished = published_total_time / r.ConnectedModelsCount
+		connectionModelCount64 := int64(r.ConnectedModelsCount)
+		if connectionModelCount64 != 0 {
+			r.AverageModelFPS = total_model_fps / connectionModelCount64
+			r.AverageAudioBytesSends = audio_bytes_sends / connectionModelCount64 / 1024
+			r.AverageVideoBytesSends = video_bytes_sends / connectionModelCount64 / 1024
+			r.TotalVideoPublished = published_total_time / connectionModelCount64
 		}
-		if r.ConnectedClientsCount != 0 {
-			r.AverageClientFPS = total_client_fps / r.ConnectedClientsCount
-			r.AverageAudioBytesReceived = audio_bytes_received / r.ConnectedClientsCount / 1024
-			r.AverageVideoBytesReceived = video_bytes_received / r.ConnectedClientsCount / 1024
-			r.TotalVideoPlayed = played_total_time / r.ConnectedClientsCount
+		connectedClientsCount64 := int64(r.ConnectedClientsCount)
+		if connectedClientsCount64 != 0 {
+			r.AverageClientFPS = total_client_fps / connectedClientsCount64
+			r.AverageAudioBytesReceived = audio_bytes_received / connectedClientsCount64 / 1024
+			r.AverageVideoBytesReceived = video_bytes_received / connectedClientsCount64 / 1024
+			r.TotalVideoPlayed = played_total_time / connectedClientsCount64
 		}
 		r.TotalTime = time.Now().Unix() - r.StartTime
 	}

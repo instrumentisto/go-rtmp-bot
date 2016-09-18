@@ -49,11 +49,11 @@ func NewLauncher(data *model.StartRequest, report *model.Report, rtmp_file_path 
 
 // Starts stress test.
 func (l *Launcher) Start() {
+	defer l.cleanMap()
 	l.cleanMap()
 	l.stop_chan = make(chan bool)
 	flv_chan := make(chan *model.FlvFrame)
 	flv_stream, err := publisher.NewFlvFile(
-		//"/var/www/free-media-server.com/flvs/big_buck_bunny_720p_2mb.flv",
 		l.rtmp_path,
 		l.handler)
 	if err != nil {
@@ -68,7 +68,6 @@ func (l *Launcher) Start() {
 		go pub.Run()
 		l.clients[pub.GetID()] = pub
 	}
-	log.Printf("START TEST: %d", len(l.clients))
 	go flv_stream.PlayFile()
 	for {
 		select {
@@ -76,13 +75,20 @@ func (l *Launcher) Start() {
 			if ok {
 				switch signal.SignalType {
 				case model.STATUS:
+					if l.clients == nil || len(l.clients) == 0 {
+						continue
+					}
 					client, ok := l.clients[signal.Target]
 					if !ok {
 						log.Printf("STATUS client not found: %v", signal.Target)
 						continue
 					}
+
 					client.SetStatus(signal.Data.(uint))
 				case model.CLOSED:
+					if l.clients == nil || len(l.clients) == 0 {
+						continue
+					}
 					_, ok := l.clients[signal.Target]
 					if !ok {
 						log.Printf("CLOSED client not found: %v", signal.Target)
@@ -90,6 +96,9 @@ func (l *Launcher) Start() {
 					}
 					break
 				case model.STREAM_CREATE:
+					if l.clients == nil || len(l.clients) == 0 {
+						continue
+					}
 					client, ok := l.clients[signal.Target]
 					if !ok {
 						log.Printf("STREAM CREATE client not found: %v", signal.Target)
@@ -98,15 +107,22 @@ func (l *Launcher) Start() {
 					client.SetStream(
 						signal.Data.(gortmp.OutboundStream))
 				case model.PUBLISH_START:
+					if l.clients == nil || len(l.clients) == 0 {
+						continue
+					}
 					client, ok := l.clients[signal.Target]
 					if !ok {
 						log.Printf("PUBLISH START client not found: %v", signal.Target)
 						continue
 					}
+
 					client.PublishStream(
 						signal.Data.(gortmp.OutboundStream))
 					l.startClients(client.GetStreamKey())
 				case model.PLAY_STREAM:
+					if l.clients == nil || len(l.clients) == 0 {
+						continue
+					}
 					client, ok := l.clients[signal.Target]
 					if !ok {
 						log.Printf("PLAY STREAM client not found: %v", signal.Target)
@@ -115,6 +131,9 @@ func (l *Launcher) Start() {
 					go client.PlayStream(
 						signal.Data.(*gortmp.Message))
 				case model.ADD_FRAME:
+					if l.clients == nil || len(l.clients) == 0 {
+						continue
+					}
 					for _, c := range l.clients {
 						if c.GetStat().Role == model.ROLE_PUBLISHER {
 							c.AddFrame(signal.Data.(*model.FlvFrame))
@@ -132,7 +151,6 @@ func (l *Launcher) Start() {
 //
 // param: stream_key string   RTMP stream key.
 func (l *Launcher) startClients(stream_key string) {
-	log.Printf("start clients: %s", stream_key)
 	for i := 0; i < l.Data.ClientCount; i++ {
 		player := player.NewPlayer(l.Data.ServerURL, stream_key, l.handler)
 		l.clients[player.GetID()] = player
@@ -203,12 +221,7 @@ func (l *Launcher) Stop() {
 
 // Cleans RTMP clients map.
 func (l *Launcher) cleanMap() {
-	if l.clients == nil || len(l.clients) == 0 {
-		return
-	}
-	for key, _ := range l.clients {
-		delete(l.clients, key)
-	}
+	l.clients = make(map[string]IRTMPClient)
 }
 
 // Check any panic.
